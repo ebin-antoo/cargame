@@ -62,6 +62,7 @@
     <Content Include="assets\images\car1.png" />
     <Content Include="assets\images\car.png" />
     <Content Include="assets\images\coin.png" />
+    <Content Include="assets\images\road-barrier.png" />
     <Content Include="assets\images\road.jpg" />
     <Content Include="css\normalize.css" />
     <Content Include="assets\images\loading.jpg" />
