@@ -2,20 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Car Game</title>
-    <!-- css section-->
+    <!-- CSS Section -->
+    <link href="css/normalize.css" rel="stylesheet" />
 
 </head>
-<body>
+<body onload="preload()">
+    <canvas id="canvas" width="320" height="480" style="border: solid;"></canvas>
 
-    <!--Javascript section-->
-    <script src="Scripts/jquery.min.js"></script>
-    <script src="Scripts/easeljs-0.7.1.min.js"></script>
-    <script src="Scripts/tweenjs-0.5.1.min.js"></script>
-    <script src="Scripts/soundjs-0.5.2.min.js"></script>
-    <script src="Scripts/preloadjs-0.4.1.min.js"></script>
+    <!-- JavaScript Section -->
+    <script src="Scripts/lib/jquery-2.1.1.min.js"></script>
+
+    <!-- Game Framework -->
+    <script src="Scripts/lib/easeljs-0.7.1.min.js"></script>
+    <script src="Scripts/lib/tweenjs-0.5.1.min.js"></script>
+    <script src="Scripts/lib/soundjs-0.5.2.min.js"></script>
+    <script src="Scripts/lib/preloadjs-0.4.1.min.js"></script>
+
+    <!-- Game files-->
     <script src="Scripts/game.js"></script>
-    <!--EO Js-->
 </body>
 </html>

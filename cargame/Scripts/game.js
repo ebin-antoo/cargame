@@ -1,7 +1,7 @@
-﻿var stage: createjs.Stage;
+﻿var stage;
 var queue;
 
-function preload(): void {
+function preload() {
     queue = new createjs.LoadQueue();
     queue.installPlugin(createjs.Sound);
     queue.addEventListener("complete", init);
@@ -11,7 +11,7 @@ function preload(): void {
     ]);
 }
 
-function init(): void {
+function init() {
     stage = new createjs.Stage(document.getElementById("canvas"));
     stage.enableMouseOver(20);
     createjs.Ticker.setFPS(60);
@@ -19,19 +19,19 @@ function init(): void {
     gameStart();
 }
 
-function handleTick(event):void {
+function handleTick(event) {
     stage.update();
 }
 
-class Car {
-    constructor() {
-
+var Car = (function () {
+    function Car() {
     }
-}
+    return Car;
+})();
 
-function gameStart(): void {
-   /* // Add code here
-
+function gameStart() {
+    /* // Add code here
+    
     // Some example code here - to be replaced
     var placeholder = new createjs.Bitmap(queue.getResult('loading'));
     placeholder.regX = placeholder.image.width / 2;
@@ -40,5 +40,6 @@ function gameStart(): void {
     placeholder.y = stage.canvas.height / 2;
     stage.addChild(placeholder);
     createjs.Sound.play("yay");
-*/
+    */
 }
+//# sourceMappingURL=game.js.map
