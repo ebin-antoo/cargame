@@ -6,11 +6,11 @@ var car: Car;
 var coin: Coin;
 var road: Road;
 
-//barrier array
-var barrier = [];
+//redcar array
+var redcar = [];
 
 //Game constants
-var BARRIER_NUM: number = 3;
+var REDCAR_NUM: number = 3;
 
 function preload(): void {
     queue = new createjs.LoadQueue();
@@ -19,8 +19,8 @@ function preload(): void {
     queue.loadManifest([
         { id: "car", src: "assets/images/car.png" },
         { id: "coin", src: "assets/images/coin.png" },
-        { id: "barrier", src: "assets/images/road-barrier.png" },
-        { id: "road", src: "assets/images/road.jpg" },
+        { id: "redcar", src: "assets/images/red_car.png" },
+        { id: "road", src: "assets/images/road2.jpg" },
         { id: "yay", src: "assets/sounds/yay.ogg" }
     ]);
 }
@@ -38,8 +38,8 @@ function raceloop(event): void {
     coin.update();
     car.update();
 
-    for (var count = 0; count < BARRIER_NUM; count++) {
-        barrier[count].update();
+    for (var count = 0; count < REDCAR_NUM; count++) {
+        redcar[count].update();
     }
     stage.update();
 }
@@ -55,14 +55,19 @@ class Car {
         this.height = this.Image.getBounds().height;
         this.Image.regX = this.width * 0.5;
         this.Image.regY = this.width * 0.5;
-        this.Image.y = 430;
-       
+        this.Image.x = 65;
+        this.Image.y = 302;
 
         stage.addChild(this.Image);
     }
 
     update() {
-        this.Image.x = stage.mouseX;
+        if (stage.mouseY >= 70 && stage.mouseY <= 550) {
+            this.Image.y = stage.mouseY;
+        }
+        
+            
+        
     }
 } //EO car class
 
@@ -76,7 +81,7 @@ class Coin {
         this.Image = new createjs.Bitmap(queue.getResult("coin"));
         this.width = this.Image.getBounds().width;
         this.height = this.Image.getBounds().height;
-        this.Image.regX = this.width * 0.5;
+        this.Image.regX = this.height * 0.5;
         this.Image.regY = this.width * 0.5;
         this.dy = 5;
 
@@ -85,75 +90,75 @@ class Coin {
     }
 
     reset() { 
-        this.Image.y = -this.height;
-        this.Image.x = Math.floor(Math.random() * stage.canvas.width);
+        this.Image.x = 805;
+        this.Image.y = Math.floor(Math.random() * stage.canvas.height);
     }
 
     update() {
-        this.Image.y += this.dy;
-        if (this.Image.y >= (this.height + stage.canvas.height)) {
+        this.Image.x -= this.dy;
+        if (this.Image.x <= (-stage.canvas.width)) {
             this.reset();
         }
     }
 } //EO coin class
 
-//Barriers class
-class Barrier {
+//red car class
+class RedCar {
     Image: createjs.Bitmap;
     width: number;
     height: number;
     dy: number;
     dx: number;
     constructor() {
-        this.Image = new createjs.Bitmap(queue.getResult("barrier"));
+        this.Image = new createjs.Bitmap(queue.getResult("redcar"));
         this.width = this.Image.getBounds().width;
         this.height = this.Image.getBounds().height;
-        this.Image.regX = this.width * 0.5;
+        this.Image.regX = this.height * 0.5;
         this.Image.regY = this.width * 0.5;
+        this.dx = 10;
 
         stage.addChild(this.Image);
         this.reset();
     }
 
     reset() {
-        this.Image.y = -this.height;
-        this.Image.x = Math.floor(Math.random() * stage.canvas.width);
-        this.dy = Math.floor(Math.random() * 5 + 5);
-        this.dx = Math.floor(Math.random() * 4 - 2);
+        this.Image.x = 805 + Math.floor(Math.random()*800);
+        this.Image.y = Math.floor(Math.random() * stage.canvas.height);
+        this.dx = Math.floor(Math.random() * 10 + 5);
+        
     }
 
     update() {
-        this.Image.y += this.dy;
-        this.Image.x += this.dx;
-        if (this.Image.y >= (this.height + stage.canvas.height)) {
+        this.Image.x -= this.dx;
+        if (this.Image.x <= (-stage.canvas.width)) {
             this.reset();
         }
     }
-} //EO barrier class
+} //EO red car class
 
 //Road class
 class Road {
     Image: createjs.Bitmap;
     width: number;
     height: number;
-    dy: number;
+    dx: number;
     constructor() {
         this.Image = new createjs.Bitmap(queue.getResult("road"));
         this.width = this.Image.getBounds().width;
         this.height = this.Image.getBounds().height;
-        this.dy = 5;
+        this.dx = 5;
 
         stage.addChild(this.Image);
         this.reset();
     }
 
     reset() {
-        this.Image.y = -960;
+        this.Image.x = 0;
     }
 
     update() {
-        this.Image.y += this.dy;
-        if (this.Image.y >= 0) {
+        this.Image.x -= this.dx;
+        if (this.Image.x <= -600) {
             this.reset();
         }
     }
@@ -165,7 +170,7 @@ function gameStart(): void {
     coin = new Coin();
     car = new Car();
 
-    for (var count = 0; count < BARRIER_NUM; count++) {
-        barrier[count] = new Barrier();
+    for (var count = 0; count < REDCAR_NUM; count++) {
+        redcar[count] = new RedCar();
     }
 }
