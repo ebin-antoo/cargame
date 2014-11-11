@@ -10,7 +10,7 @@ var road: Road;
 var redcar = [];
 
 //Game constants
-var REDCAR_NUM: number = 3;
+var REDCAR_NUM: number = 5;
 
 function preload(): void {
     queue = new createjs.LoadQueue();
@@ -41,6 +41,8 @@ function raceloop(event): void {
     for (var count = 0; count < REDCAR_NUM; count++) {
         redcar[count].update();
     }
+    collisonCheck();
+
     stage.update();
 }
 
@@ -122,7 +124,7 @@ class RedCar {
     }
 
     reset() {
-        this.Image.x = 805 + Math.floor(Math.random()*800);
+        this.Image.x = 805 + Math.floor(Math.random()*50);
         this.Image.y = Math.floor(Math.random() * stage.canvas.height);
         this.dx = Math.floor(Math.random() * 10 + 5);
         
@@ -164,6 +166,77 @@ class Road {
     }
 } //EO coin class
 
+//distance function
+function distance(p1: createjs.Point, p2: createjs.Point): number
+{
+    var firstpoint: createjs.Point;
+    var secondpoint: createjs.Point;
+    var theXs: number;
+    var theYs: number;
+    var result: number;
+
+    firstpoint = new createjs.Point();
+    secondpoint = new createjs.Point();
+
+    firstpoint.x = p1.x;
+    firstpoint.y = p1.y;
+
+    secondpoint.x = p2.x;
+    secondpoint.y = p2.y;
+
+    theXs = secondpoint.x - firstpoint.x;
+    theYs = secondpoint.y - firstpoint.y;
+
+    theXs *= theXs;
+    theYs *= theYs;
+
+    result = Math.sqrt(theXs + theYs);
+
+    return result;
+}
+
+function carAndCoin() {
+    var point1: createjs.Point = new createjs.Point();
+    var point2: createjs.Point = new createjs.Point();
+
+    point1.x = car.Image.x;
+    point1.y = car.Image.y;
+    point2.x = coin.Image.x;
+    point2.y = coin.Image.y;
+    if (distance(point1, point2) < ((car.height * 0.5) + (coin.height * 0.5))) {
+        createjs.Sound.play("yay");
+        coin.reset();
+    }
+}
+
+function carAndRedCar(thecar: RedCar) {
+    var point1: createjs.Point = new createjs.Point();
+    var point2: createjs.Point = new createjs.Point();
+
+    var redcar: RedCar = new RedCar();
+
+    redcar = thecar; 
+
+    point1.x = car.Image.x;
+    point1.y = car.Image.y;
+    point2.x = redcar.Image.x;
+    point2.y = redcar.Image.y;
+    if (distance(point1, point2) < ((car.height * 0.5) + (redcar.height * 0.5))) {
+        createjs.Sound.play("yay");
+        redcar.reset();
+    }
+}
+
+function collisonCheck() {
+    carAndCoin();
+
+     for (var count = 0; count < REDCAR_NUM; count++) {
+        carAndRedCar(redcar[count]);
+    }
+    
+}
+
+//game start
 function gameStart(): void {
 
     road = new Road();
@@ -173,4 +246,5 @@ function gameStart(): void {
     for (var count = 0; count < REDCAR_NUM; count++) {
         redcar[count] = new RedCar();
     }
+
 }
