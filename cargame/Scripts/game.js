@@ -1,4 +1,5 @@
 ﻿/// <reference path="constants.ts" />
+/// <reference path="objects/car.ts" />
 var stage;
 var queue;
 
@@ -48,50 +49,27 @@ function gameloop(event) {
     stage.update();
 }
 
-//car class
-var Car = (function () {
-    function Car() {
-        this.Image = new createjs.Bitmap(queue.getResult("car"));
-        this.width = this.Image.getBounds().width;
-        this.height = this.Image.getBounds().height;
-        this.Image.regX = this.width * 0.5;
-        this.Image.regY = this.width * 0.5;
-        this.Image.x = 65;
-        this.Image.y = 302;
-
-        stage.addChild(this.Image);
-        //play car engine sound
-        //createjs.Sound.play("yay",0,0,0,-1,1,0);
-    }
-    Car.prototype.update = function () {
-        if (stage.mouseY >= 70 && stage.mouseY <= 550) {
-            this.Image.y = stage.mouseY;
-        }
-    };
-    return Car;
-})();
-
 //Coin class
 var Coin = (function () {
     function Coin() {
-        this.Image = new createjs.Bitmap(queue.getResult("coin"));
-        this.width = this.Image.getBounds().width;
-        this.height = this.Image.getBounds().height;
-        this.Image.regX = this.height * 0.5;
-        this.Image.regY = this.width * 0.5;
+        this.image = new createjs.Bitmap(queue.getResult("coin"));
+        this.width = this.image.getBounds().width;
+        this.height = this.image.getBounds().height;
+        this.image.regX = this.height * 0.5;
+        this.image.regY = this.width * 0.5;
         this.dy = 5;
 
-        stage.addChild(this.Image);
+        stage.addChild(this.image);
         this.reset();
     }
     Coin.prototype.reset = function () {
-        this.Image.x = 805;
-        this.Image.y = Math.floor(Math.random() * stage.canvas.height);
+        this.image.x = 805;
+        this.image.y = Math.floor(Math.random() * stage.canvas.height);
     };
 
     Coin.prototype.update = function () {
-        this.Image.x -= this.dy;
-        if (this.Image.x <= (-stage.canvas.width)) {
+        this.image.x -= this.dy;
+        if (this.image.x <= (-stage.canvas.width)) {
             this.reset();
         }
     };
@@ -101,25 +79,25 @@ var Coin = (function () {
 //red car class
 var RedCar = (function () {
     function RedCar() {
-        this.Image = new createjs.Bitmap(queue.getResult("redcar"));
-        this.width = this.Image.getBounds().width;
-        this.height = this.Image.getBounds().height;
-        this.Image.regX = this.height * 0.5;
-        this.Image.regY = this.width * 0.5;
+        this.image = new createjs.Bitmap(queue.getResult("redcar"));
+        this.width = this.image.getBounds().width;
+        this.height = this.image.getBounds().height;
+        this.image.regX = this.height * 0.5;
+        this.image.regY = this.width * 0.5;
         this.dx = 10;
 
-        stage.addChild(this.Image);
+        stage.addChild(this.image);
         this.reset();
     }
     RedCar.prototype.reset = function () {
-        this.Image.x = 805 + Math.floor(Math.random() * 50);
-        this.Image.y = Math.floor(Math.random() * stage.canvas.height);
+        this.image.x = 805 + Math.floor(Math.random() * 50);
+        this.image.y = Math.floor(Math.random() * stage.canvas.height);
         this.dx = Math.floor(Math.random() * 10 + 5);
     };
 
     RedCar.prototype.update = function () {
-        this.Image.x -= this.dx;
-        if (this.Image.x <= (-stage.canvas.width)) {
+        this.image.x -= this.dx;
+        if (this.image.x <= (-stage.canvas.width)) {
             this.reset();
         }
     };
@@ -129,21 +107,21 @@ var RedCar = (function () {
 //Road class
 var Road = (function () {
     function Road() {
-        this.Image = new createjs.Bitmap(queue.getResult("road"));
-        this.width = this.Image.getBounds().width;
-        this.height = this.Image.getBounds().height;
+        this.image = new createjs.Bitmap(queue.getResult("road"));
+        this.width = this.image.getBounds().width;
+        this.height = this.image.getBounds().height;
         this.dx = 5;
 
-        stage.addChild(this.Image);
+        stage.addChild(this.image);
         this.reset();
     }
     Road.prototype.reset = function () {
-        this.Image.x = 0;
+        this.image.x = 0;
     };
 
     Road.prototype.update = function () {
-        this.Image.x -= this.dx;
-        if (this.Image.x <= -600) {
+        this.image.x -= this.dx;
+        if (this.image.x <= -600) {
             this.reset();
         }
     };
@@ -183,10 +161,10 @@ function carAndCoin() {
     var point1 = new createjs.Point();
     var point2 = new createjs.Point();
 
-    point1.x = car.Image.x;
-    point1.y = car.Image.y;
-    point2.x = coin.Image.x;
-    point2.y = coin.Image.y;
+    point1.x = car.image.x;
+    point1.y = car.image.y;
+    point2.x = coin.image.x;
+    point2.y = coin.image.y;
     if (distance(point1, point2) < ((car.height * 0.5) + (coin.height * 0.5))) {
         createjs.Sound.play("yay");
         scoreboard.scores += 100;
@@ -203,10 +181,10 @@ function carAndRedCar(theRedCar) {
 
     redcar = theRedCar;
 
-    point1.x = car.Image.x;
-    point1.y = car.Image.y;
-    point2.x = redcar.Image.x;
-    point2.y = redcar.Image.y;
+    point1.x = car.image.x;
+    point1.y = car.image.y;
+    point2.x = redcar.image.x;
+    point2.y = redcar.image.y;
     if (distance(point1, point2) < ((car.height * 0.5) + (redcar.height * 0.5))) {
         createjs.Sound.play("yay");
         scoreboard.lives -= 1;
@@ -247,7 +225,7 @@ var Scoreboard = (function () {
 function gameStart() {
     road = new Road();
     coin = new Coin();
-    car = new Car();
+    car = new objects.Car();
 
     for (var count = 0; count < constants.REDCAR_NUM; count++) {
         redcar[count] = new RedCar();

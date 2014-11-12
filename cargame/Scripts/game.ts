@@ -1,9 +1,10 @@
 ﻿/// <reference path="constants.ts" />
+/// <reference path="objects/car.ts" />
 var stage: createjs.Stage;
 var queue;
 
 //game objects
-var car: Car;
+var car: objects.Car;
 var coin: Coin;
 var road: Road;
 var scoreboard: Scoreboard;
@@ -48,62 +49,35 @@ function gameloop(event): void {
     stage.update();
 }
 
-//car class
-class Car {
-    Image: createjs.Bitmap;
-    width: number;
-    height: number;
-    constructor() {
-        this.Image = new createjs.Bitmap(queue.getResult("car"));
-        this.width = this.Image.getBounds().width;
-        this.height = this.Image.getBounds().height;
-        this.Image.regX = this.width * 0.5;
-        this.Image.regY = this.width * 0.5;
-        this.Image.x = 65;
-        this.Image.y = 302;
 
-        stage.addChild(this.Image);
-        //play car engine sound
-        //createjs.Sound.play("yay",0,0,0,-1,1,0);
-    }
-
-    update() {
-        if (stage.mouseY >= 70 && stage.mouseY <= 550) {
-            this.Image.y = stage.mouseY;
-        }
-        
-            
-        
-    }
-} //EO car class
 
 //Coin class
 class Coin {
-    Image: createjs.Bitmap;
+    image: createjs.Bitmap;
     width: number;
     height: number;
     dy: number;
     constructor() {
-        this.Image = new createjs.Bitmap(queue.getResult("coin"));
-        this.width = this.Image.getBounds().width;
-        this.height = this.Image.getBounds().height;
-        this.Image.regX = this.height * 0.5;
-        this.Image.regY = this.width * 0.5;
+        this.image = new createjs.Bitmap(queue.getResult("coin"));
+        this.width = this.image.getBounds().width;
+        this.height = this.image.getBounds().height;
+        this.image.regX = this.height * 0.5;
+        this.image.regY = this.width * 0.5;
         this.dy = 5;
 
-        stage.addChild(this.Image);
+        stage.addChild(this.image);
         this.reset();
     }
 
     reset() { 
-        this.Image.x = 805;
-        this.Image.y = Math.floor(Math.random() * stage.canvas.height);
+        this.image.x = 805;
+        this.image.y = Math.floor(Math.random() * stage.canvas.height);
     }
 
     update() {
         
-            this.Image.x -= this.dy;
-            if (this.Image.x <= (-stage.canvas.width)) {
+            this.image.x -= this.dy;
+            if (this.image.x <= (-stage.canvas.width)) {
                 this.reset();
             }
         
@@ -112,33 +86,33 @@ class Coin {
 
 //red car class
 class RedCar {
-    Image: createjs.Bitmap;
+    image: createjs.Bitmap;
     width: number;
     height: number;
     dy: number;
     dx: number;
     constructor() {
-        this.Image = new createjs.Bitmap(queue.getResult("redcar"));
-        this.width = this.Image.getBounds().width;
-        this.height = this.Image.getBounds().height;
-        this.Image.regX = this.height * 0.5;
-        this.Image.regY = this.width * 0.5;
+        this.image = new createjs.Bitmap(queue.getResult("redcar"));
+        this.width = this.image.getBounds().width;
+        this.height = this.image.getBounds().height;
+        this.image.regX = this.height * 0.5;
+        this.image.regY = this.width * 0.5;
         this.dx = 10;
 
-        stage.addChild(this.Image);
+        stage.addChild(this.image);
         this.reset();
     }
 
     reset() {
-        this.Image.x = 805 + Math.floor(Math.random()*50);
-        this.Image.y = Math.floor(Math.random() * stage.canvas.height);
+        this.image.x = 805 + Math.floor(Math.random()*50);
+        this.image.y = Math.floor(Math.random() * stage.canvas.height);
         this.dx = Math.floor(Math.random() * 10 + 5);
         
     }
 
     update() {
-        this.Image.x -= this.dx;
-        if (this.Image.x <= (-stage.canvas.width)) {
+        this.image.x -= this.dx;
+        if (this.image.x <= (-stage.canvas.width)) {
             this.reset();
         }
     }
@@ -146,27 +120,27 @@ class RedCar {
 
 //Road class
 class Road {
-    Image: createjs.Bitmap;
+    image: createjs.Bitmap;
     width: number;
     height: number;
     dx: number;
     constructor() {
-        this.Image = new createjs.Bitmap(queue.getResult("road"));
-        this.width = this.Image.getBounds().width;
-        this.height = this.Image.getBounds().height;
+        this.image = new createjs.Bitmap(queue.getResult("road"));
+        this.width = this.image.getBounds().width;
+        this.height = this.image.getBounds().height;
         this.dx = 5;
 
-        stage.addChild(this.Image);
+        stage.addChild(this.image);
         this.reset();
     }
 
     reset() {
-        this.Image.x = 0;
+        this.image.x = 0;
     }
 
     update() {
-        this.Image.x -= this.dx;
-        if (this.Image.x <= -600) {
+        this.image.x -= this.dx;
+        if (this.image.x <= -600) {
             this.reset();
         }
     }
@@ -206,10 +180,10 @@ function carAndCoin() {
     var point1: createjs.Point = new createjs.Point();
     var point2: createjs.Point = new createjs.Point();
 
-    point1.x = car.Image.x;
-    point1.y = car.Image.y;
-    point2.x = coin.Image.x;
-    point2.y = coin.Image.y;
+    point1.x = car.image.x;
+    point1.y = car.image.y;
+    point2.x = coin.image.x;
+    point2.y = coin.image.y;
     if (distance(point1, point2) < ((car.height * 0.5) + (coin.height * 0.5))) {
         createjs.Sound.play("yay");
         scoreboard.scores += 100;
@@ -227,10 +201,10 @@ function carAndRedCar(theRedCar: RedCar) {
 
     redcar = theRedCar; 
 
-    point1.x = car.Image.x;
-    point1.y = car.Image.y;
-    point2.x = redcar.Image.x;
-    point2.y = redcar.Image.y;
+    point1.x = car.image.x;
+    point1.y = car.image.y;
+    point2.x = redcar.image.x;
+    point2.y = redcar.image.y;
     if (distance(point1, point2) < ((car.height * 0.5) + (redcar.height * 0.5))) {
         createjs.Sound.play("yay");
         scoreboard.lives -= 1;
@@ -276,7 +250,7 @@ function gameStart(): void {
 
     road = new Road();
     coin = new Coin();
-    car = new Car();
+    car = new objects.Car();
 
     for (var count = 0; count < constants.REDCAR_NUM; count++) {
         redcar[count] = new RedCar();
