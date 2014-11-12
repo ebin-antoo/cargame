@@ -82,7 +82,7 @@ function carAndCoin() {
     point2.x = coin.x;
     point2.y = coin.y;
     if (distance(point1, point2) < ((car.height * 0.5) + (coin.height * 0.5))) {
-        createjs.Sound.play("yay");
+        createjs.Sound.play("1-up");
         scoreboard.scores += 100;
         coin.reset();
     }
@@ -103,6 +103,7 @@ function carAndRedCar(theRedCar) {
     point2.y = redcar.y;
     if (distance(point1, point2) < ((car.height * 0.5) + (redcar.height * 0.5))) {
         createjs.Sound.play("car_crash");
+        createjs.Sound.play("lost_a_life", 0, 1, 0, 0);
         scoreboard.lives -= 1;
         redcar.reset();
     }

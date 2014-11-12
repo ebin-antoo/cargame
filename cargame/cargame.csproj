@@ -66,7 +66,10 @@
     <Content Include="assets\images\red_car.png" />
     <Content Include="assets\images\road-barrier.png" />
     <Content Include="assets\images\road.jpg" />
+    <Content Include="assets\sounds\1-up.mp3" />
     <Content Include="assets\sounds\car_crash.mp3" />
+    <Content Include="assets\sounds\game_over.mp3" />
+    <Content Include="assets\sounds\lost_a_life.mp3" />
     <Content Include="assets\sounds\Police Chase.mp3" />
     <Content Include="assets\sounds\police_siren.mp3" />
     <Content Include="css\normalize.css" />
@@ -75,7 +78,6 @@
     <Content Include="assets\images\Thumbs.db" />
     <Content Include="Scripts\game.js.map" />
     <Content Include="Scripts\lib\jquery-2.1.1.min.map" />
-    <Content Include="assets\sounds\yay.ogg" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

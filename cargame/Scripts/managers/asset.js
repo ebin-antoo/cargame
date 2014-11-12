@@ -2,9 +2,10 @@
 (function (managers) {
     var Data = [
         { id: "road", src: "assets/images/road.jpg" },
-        { id: "yay", src: "assets/sounds/yay.ogg" },
+        { id: "1-up", src: "assets/sounds/1-up.mp3" },
         { id: "police_siren", src: "assets/sounds/police_siren.mp3" },
-        { id: "car_crash", src: "assets/sounds/car_crash.mp3" }
+        { id: "car_crash", src: "assets/sounds/car_crash.mp3" },
+        { id: "lost_a_life", src: "assets/sounds/lost_a_life.mp3" }
     ];
 
     var spriteSheetData = {
