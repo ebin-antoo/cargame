@@ -1,7 +1,9 @@
 ﻿module managers {
         var Data = [
             { id: "road", src: "assets/images/road.jpg" },
-            { id: "yay", src: "assets/sounds/yay.ogg" }
+            { id: "yay", src: "assets/sounds/yay.ogg" },
+            { id: "police_siren", src: "assets/sounds/police_siren.mp3" },
+            { id: "car_crash", src: "assets/sounds/car_crash.mp3" }
         ]
 
     var spriteSheetData = {

@@ -10,7 +10,7 @@ var objects;
     var RedCar = (function (_super) {
         __extends(RedCar, _super);
         function RedCar() {
-            _super.call(this, "redcar");
+            _super.call(this, "red_car");
             this.dx = 10;
 
             stage.addChild(this);

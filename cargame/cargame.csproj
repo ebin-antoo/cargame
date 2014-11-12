@@ -66,6 +66,9 @@
     <Content Include="assets\images\red_car.png" />
     <Content Include="assets\images\road-barrier.png" />
     <Content Include="assets\images\road.jpg" />
+    <Content Include="assets\sounds\car_crash.mp3" />
+    <Content Include="assets\sounds\Police Chase.mp3" />
+    <Content Include="assets\sounds\police_siren.mp3" />
     <Content Include="css\normalize.css" />
     <Content Include="assets\images\loading.jpg" />
     <Content Include="packages.config" />

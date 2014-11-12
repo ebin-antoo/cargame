@@ -4,7 +4,7 @@
         dy: number;
         dx: number;
         constructor() {
-            super("redcar");
+            super("red_car");
             this.dx = 10;
 
             stage.addChild(this);

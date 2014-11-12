@@ -8,7 +8,7 @@
 
             stage.addChild(this);
             //play car engine sound
-            //createjs.Sound.play("yay",0,0,0,-1,1,0);
+            createjs.Sound.play("police_siren",0,0,0,-1,1,0);
         }
 
         update() {

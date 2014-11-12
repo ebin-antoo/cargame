@@ -15,8 +15,9 @@ var objects;
             this.y = 302;
 
             stage.addChild(this);
+
             //play car engine sound
-            //createjs.Sound.play("yay",0,0,0,-1,1,0);
+            createjs.Sound.play("police_siren", 0, 0, 0, -1, 1, 0);
         }
         Car.prototype.update = function () {
             if (stage.mouseY >= 70 && stage.mouseY <= 550) {
