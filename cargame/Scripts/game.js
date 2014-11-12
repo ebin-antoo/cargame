@@ -5,12 +5,16 @@ var queue;
 var car;
 var coin;
 var road;
+var scoreboard;
 
 //redcar array
 var redcar = [];
 
 //Game constants
 var REDCAR_NUM = 5;
+var GAME_FONT = "40px Consolas";
+var GAME_FONT_COLOR = "#FFF00";
+var PLAYER_LIVES = 3;
 
 function preload() {
     queue = new createjs.LoadQueue();
@@ -43,6 +47,8 @@ function raceloop(event) {
     }
     collisonCheck();
 
+    scoreboard.update();
+
     stage.update();
 }
 
@@ -58,6 +64,8 @@ var Car = (function () {
         this.Image.y = 302;
 
         stage.addChild(this.Image);
+        //play car engine sound
+        //createjs.Sound.play("yay",0,0,0,-1,1,0);
     }
     Car.prototype.update = function () {
         if (stage.mouseY >= 70 && stage.mouseY <= 550) {
@@ -174,6 +182,7 @@ function distance(p1, p2) {
     return result;
 }
 
+//collision btwn car and coin
 function carAndCoin() {
     var point1 = new createjs.Point();
     var point2 = new createjs.Point();
@@ -184,17 +193,19 @@ function carAndCoin() {
     point2.y = coin.Image.y;
     if (distance(point1, point2) < ((car.height * 0.5) + (coin.height * 0.5))) {
         createjs.Sound.play("yay");
+        scoreboard.scores += 100;
         coin.reset();
     }
 }
 
-function carAndRedCar(thecar) {
+//collision btwn car and red car
+function carAndRedCar(theRedCar) {
     var point1 = new createjs.Point();
     var point2 = new createjs.Point();
 
     var redcar = new RedCar();
 
-    redcar = thecar;
+    redcar = theRedCar;
 
     point1.x = car.Image.x;
     point1.y = car.Image.y;
@@ -202,10 +213,12 @@ function carAndRedCar(thecar) {
     point2.y = redcar.Image.y;
     if (distance(point1, point2) < ((car.height * 0.5) + (redcar.height * 0.5))) {
         createjs.Sound.play("yay");
+        scoreboard.lives -= 1;
         redcar.reset();
     }
 }
 
+//collision check function
 function collisonCheck() {
     carAndCoin();
 
@@ -214,7 +227,27 @@ function collisonCheck() {
     }
 }
 
-//game start
+//scoreboard function
+var Scoreboard = (function () {
+    function Scoreboard() {
+        this.labelString = "";
+        this.lives = PLAYER_LIVES;
+        this.scores = 0;
+        this.label = new createjs.Text(this.labelString, GAME_FONT, GAME_FONT_COLOR);
+        this.update();
+        this.width = this.label.getBounds().width;
+        this.height = this.label.getBounds().height;
+
+        stage.addChild(this.label);
+    }
+    Scoreboard.prototype.update = function () {
+        this.labelString = "Lives: " + this.lives.toString() + "Score: " + this.scores.toString();
+        this.label.text = this.labelString;
+    };
+    return Scoreboard;
+})();
+
+//game start function
 function gameStart() {
     road = new Road();
     coin = new Coin();
@@ -223,5 +256,7 @@ function gameStart() {
     for (var count = 0; count < REDCAR_NUM; count++) {
         redcar[count] = new RedCar();
     }
+
+    scoreboard = new Scoreboard();
 }
 //# sourceMappingURL=game.js.map
