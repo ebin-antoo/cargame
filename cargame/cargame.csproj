@@ -62,10 +62,10 @@
     <Content Include="assets\images\car1.png" />
     <Content Include="assets\images\car.png" />
     <Content Include="assets\images\coin.png" />
+    <Content Include="assets\images\imgMap.png" />
     <Content Include="assets\images\red_car.png" />
     <Content Include="assets\images\road-barrier.png" />
     <Content Include="assets\images\road.jpg" />
-    <Content Include="assets\images\road2.jpg" />
     <Content Include="css\normalize.css" />
     <Content Include="assets\images\loading.jpg" />
     <Content Include="packages.config" />
@@ -113,14 +113,15 @@
     <TypeScriptCompile Include="Scripts\lib\preloadjs.d.ts" />
     <TypeScriptCompile Include="Scripts\lib\soundjs.d.ts" />
     <TypeScriptCompile Include="Scripts\lib\tweenjs.d.ts" />
+    <TypeScriptCompile Include="Scripts\managers\asset.ts" />
     <TypeScriptCompile Include="Scripts\objects\car.ts" />
     <TypeScriptCompile Include="Scripts\objects\coin.ts" />
     <TypeScriptCompile Include="Scripts\objects\gameobjects.ts" />
     <TypeScriptCompile Include="Scripts\objects\redcar.ts" />
+    <TypeScriptCompile Include="Scripts\objects\road.ts" />
     <TypeScriptCompile Include="Scripts\objects\scoreboard.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Scripts\managers\" />
     <Folder Include="Scripts\states\" />
   </ItemGroup>
   <PropertyGroup>

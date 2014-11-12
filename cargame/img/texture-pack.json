@@ -1,0 +1,19 @@
+{
+"images": ["imgMap.png"],
+"frames": [
+
+    [2, 2, 95, 78], 
+    [2, 162, 60, 65], 
+    [2, 82, 95, 78]
+],
+"animations": {
+    
+        "car":[0], 
+        "coin":[1], 
+        "red_car":[2]
+},
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:b1463d166342d0e1e5a040ff4d6d9c36:1c698a72e2d41e2cb1afa8b39961f6c5:81b250822beeb8e7831c3f666b0d0f69$",
+        "Created with TexturePacker (http://www.texturepacker.com) for EaselJS"
+]
+}

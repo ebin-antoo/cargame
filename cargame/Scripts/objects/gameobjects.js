@@ -9,14 +9,14 @@ var objects;
     var GameObjects = (function (_super) {
         __extends(GameObjects, _super);
         function GameObjects(imageString) {
-            _super.call(this, queue.getResult(imageString));
+            _super.call(this, managers.Asset.imgMap, imageString);
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.regX = this.width * 0.5;
             this.regY = this.width * 0.5;
         }
         return GameObjects;
-    })(createjs.Bitmap);
+    })(createjs.Sprite);
     objects.GameObjects = GameObjects;
 })(objects || (objects = {}));
 //# sourceMappingURL=gameobjects.js.map
