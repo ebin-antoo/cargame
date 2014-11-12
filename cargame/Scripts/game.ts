@@ -1,4 +1,5 @@
-﻿var stage: createjs.Stage;
+﻿/// <reference path="constants.ts" />
+var stage: createjs.Stage;
 var queue;
 
 //game objects
@@ -9,12 +10,6 @@ var scoreboard: Scoreboard;
 
 //redcar array
 var redcar = [];
-
-//Game constants
-var REDCAR_NUM: number = 5;
-var GAME_FONT: string = "40px Consolas";
-var GAME_FONT_COLOR: string = "#FFF00";
-var PLAYER_LIVES: number = 3;
 
 function preload(): void {
     queue = new createjs.LoadQueue();
@@ -33,16 +28,17 @@ function init(): void {
     stage = new createjs.Stage(document.getElementById("canvas"));
     stage.enableMouseOver(20);
     createjs.Ticker.setFPS(60);
-    createjs.Ticker.addEventListener("tick", raceloop);
+    createjs.Ticker.addEventListener("tick", gameloop);
     gameStart();
 }
 
-function raceloop(event): void {
+//game loop funcction
+function gameloop(event): void {
     road.update();
     coin.update();
     car.update();
 
-    for (var count = 0; count < REDCAR_NUM; count++) {
+    for (var count = 0; count < constants.REDCAR_NUM; count++) {
         redcar[count].update();
     }
     collisonCheck();
@@ -246,7 +242,7 @@ function carAndRedCar(theRedCar: RedCar) {
 function collisonCheck() {
     carAndCoin();
 
-     for (var count = 0; count < REDCAR_NUM; count++) {
+     for (var count = 0; count < constants.REDCAR_NUM; count++) {
         carAndRedCar(redcar[count]);
     }
     
@@ -256,12 +252,12 @@ function collisonCheck() {
 class Scoreboard {
     label: createjs.Text;
     labelString: string = "";
-    lives: number = PLAYER_LIVES;
+    lives: number = constants.PLAYER_LIVES;
     scores: number = 0;
     width: number;
     height: number;
     constructor() {
-        this.label = new createjs.Text(this.labelString, GAME_FONT, GAME_FONT_COLOR);
+        this.label = new createjs.Text(this.labelString, constants.GAME_FONT, constants.GAME_FONT_COLOR);
         this.update();
         this.width = this.label.getBounds().width;
         this.height = this.label.getBounds().height;
@@ -282,7 +278,7 @@ function gameStart(): void {
     coin = new Coin();
     car = new Car();
 
-    for (var count = 0; count < REDCAR_NUM; count++) {
+    for (var count = 0; count < constants.REDCAR_NUM; count++) {
         redcar[count] = new RedCar();
     }
 
