@@ -1,4 +1,5 @@
 ﻿/// <reference path="constants.ts" />
+/// <reference path="objects/gameobjects.ts" />
 /// <reference path="objects/car.ts" />
 var stage: createjs.Stage;
 var queue;
@@ -180,8 +181,8 @@ function carAndCoin() {
     var point1: createjs.Point = new createjs.Point();
     var point2: createjs.Point = new createjs.Point();
 
-    point1.x = car.image.x;
-    point1.y = car.image.y;
+    point1.x = car.x;
+    point1.y = car.y;
     point2.x = coin.image.x;
     point2.y = coin.image.y;
     if (distance(point1, point2) < ((car.height * 0.5) + (coin.height * 0.5))) {
@@ -201,8 +202,8 @@ function carAndRedCar(theRedCar: RedCar) {
 
     redcar = theRedCar; 
 
-    point1.x = car.image.x;
-    point1.y = car.image.y;
+    point1.x = car.x;
+    point1.y = car.y;
     point2.x = redcar.image.x;
     point2.y = redcar.image.y;
     if (distance(point1, point2) < ((car.height * 0.5) + (redcar.height * 0.5))) {

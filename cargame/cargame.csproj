@@ -115,6 +115,7 @@
     <TypeScriptCompile Include="Scripts\lib\tweenjs.d.ts" />
     <TypeScriptCompile Include="Scripts\objects\car.ts" />
     <TypeScriptCompile Include="Scripts\objects\coin.ts" />
+    <TypeScriptCompile Include="Scripts\objects\gameobjects.ts" />
     <TypeScriptCompile Include="Scripts\objects\redcar.ts" />
     <TypeScriptCompile Include="Scripts\objects\scoreboard.ts" />
   </ItemGroup>
