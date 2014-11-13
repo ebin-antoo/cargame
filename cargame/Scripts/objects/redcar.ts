@@ -5,22 +5,21 @@
         dx: number;
         constructor() {
             super("red_car");
-            this.dx = 10;
-
-            stage.addChild(this);
+            //this.dx = 10;            
             this.reset();
+            stage.addChild(this);           
         }
 
         reset() {
-            this.x = 805 + Math.floor(Math.random() * 50);
+            this.x = stage.canvas.width + this.width;//805 + Math.floor(Math.random() * 50);
             this.y = Math.floor(Math.random() * stage.canvas.height);
             this.dx = Math.floor(Math.random() * 10 + 5);
-            this.dy = Math.floor(Math.random() * 5 + 5);
+           // this.dy = Math.floor(Math.random() * 5 + 5);
         }
 
         update() {
             this.x -= this.dx;
-            if (this.x <= (-stage.canvas.width)) {
+            if (this.x <= -stage.canvas.width) {
                 this.reset();
             }
         }
