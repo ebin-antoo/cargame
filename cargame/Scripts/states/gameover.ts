@@ -22,6 +22,7 @@ module states {
 
     // Game Over screen
     export function gameOver() {
+        console.log("gameover");
         var gameOverLabel: objects.Label;
         var finalScoreLabel: objects.Label;
         var finalScore: objects.Label;

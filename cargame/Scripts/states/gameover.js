@@ -25,6 +25,7 @@ var states;
 
     // Game Over screen
     function gameOver() {
+        console.log("gameover");
         var gameOverLabel;
         var finalScoreLabel;
         var finalScore;

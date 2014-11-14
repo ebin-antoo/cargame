@@ -19,6 +19,18 @@ var states;
     }
     states.startButtonClicked = startButtonClicked;
 
+    function instructionsButtonClicked(event) {
+        console.log("instructions button clicked");
+
+        //stage.removeChild(game);
+        //car.destroy();
+        //game.removeAllChildren();
+        //game.removeAllEventListeners();
+        currentState = constants.INSTRUCTION_STATE;
+        changeState(currentState);
+    }
+    states.instructionsButtonClicked = instructionsButtonClicked;
+
     function menuState() {
         //road.update();
         //car.update();
@@ -38,7 +50,7 @@ var states;
         // Show Cursor
         stage.cursor = "default";
 
-        // Display Game Over
+        // Display car game name
         gameNameLabel = new objects.Label(stage.canvas.width / 2, 40, "CAR GAME");
         game.addChild(gameNameLabel);
 
@@ -46,6 +58,10 @@ var states;
         playButton = new objects.Button(stage.canvas.width / 2, 300, "startButton");
         game.addChild(playButton);
         playButton.addEventListener("click", startButtonClicked);
+
+        instructionButton = new objects.Button(stage.canvas.width / 2, 400, "instructionsButton");
+        game.addChild(instructionButton);
+        instructionButton.addEventListener("click", instructionsButtonClicked);
 
         stage.addChild(game);
     }

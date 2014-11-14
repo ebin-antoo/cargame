@@ -17,7 +17,7 @@ module objects {
 
         reset() {
             this.x = stage.canvas.width + this.width;//805 + Math.floor(Math.random() * 50);
-            this.y = Math.floor(Math.random() * stage.canvas.height);
+            this.y = 50+Math.floor(Math.random() * 300);
             this.dx = Math.floor(Math.random() * 10 + 5);
            // this.dy = Math.floor(Math.random() * 5 + 5);
         }

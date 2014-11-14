@@ -20,7 +20,7 @@ var objects;
         }
         Coin.prototype.reset = function () {
             this.x = 805;
-            this.y = Math.floor(Math.random() * stage.canvas.height);
+            this.y = 50 + Math.floor(Math.random() * 250);
         };
 
         Coin.prototype.update = function () {

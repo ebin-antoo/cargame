@@ -4,6 +4,7 @@
     constants.MENU_STATE = 0;
     constants.PLAY_STATE = 1;
     constants.GAME_OVER_STATE = 2;
+    constants.INSTRUCTION_STATE = 3;
 
     //Game constants
     constants.REDCAR_NUM = 5;

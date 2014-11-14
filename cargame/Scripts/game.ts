@@ -4,6 +4,7 @@
 /// <reference path="objects/car.ts" />
 /// <reference path="objects/coin.ts" />
 /// <reference path="objects/redcar.ts" />
+/// <reference path="states/instruction.ts" />
 /// <reference path="objects/road.ts" />
 /// <reference path="objects/scoreboard.ts" />
 
@@ -23,6 +24,8 @@ var redcar = [];
 
 var tryAgain: objects.Button;
 var playButton: objects.Button;
+var instructionButton: objects.Button;
+
 
 var currentState: number;
 var currentStateFunction;
@@ -56,6 +59,7 @@ function optimizeForMobile() {
 function gameLoop(event): void {
     currentStateFunction();
     stage.update();
+    scoreboard.scores++;
 }
 
 function changeState(state: number): void {
@@ -65,6 +69,12 @@ function changeState(state: number): void {
             // instantiate menu screen
             currentStateFunction = states.menuState;
             states.menu();
+            break;
+        
+        case constants.INSTRUCTION_STATE:
+            // instantiate play screen
+            currentStateFunction = states.instructionsState;
+            states.instructions();
             break;
 
         case constants.PLAY_STATE:
