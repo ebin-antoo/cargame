@@ -9,7 +9,7 @@
     ];
 
     var spriteSheetData = {
-        "images": ["assets/imgMap.png"],
+        "images": ["assets/images/imgMap.png"],
         "frames": [
             [2, 2, 95, 78],
             [2, 82, 95, 78],

@@ -1,6 +1,15 @@
-﻿var states;
+﻿/// <reference path="../constants.ts" />
+/// <reference path="../objects/scoreboard.ts" />
+/// <reference path="../objects/car.ts" />
+/// <reference path="../objects/road.ts" />
+/// <reference path="../objects/coin.ts" />
+/// <reference path="../objects/redcar.ts" />
+/// <reference path="../objects/button.ts" />
+/// <reference path="../objects/label.ts" />
+var states;
 (function (states) {
     function startButtonClicked(event) {
+        console.log("start button clicked");
         stage.removeChild(game);
         car.destroy();
         game.removeAllChildren();
@@ -11,8 +20,8 @@
     states.startButtonClicked = startButtonClicked;
 
     function menuState() {
-        road.update();
-        car.update();
+        //road.update();
+        //car.update();
     }
     states.menuState = menuState;
 
@@ -30,7 +39,7 @@
         stage.cursor = "default";
 
         // Display Game Over
-        gameNameLabel = new objects.Label(stage.canvas.width / 2, 40, "Car Game");
+        gameNameLabel = new objects.Label(stage.canvas.width / 2, 40, "CAR GAME");
         game.addChild(gameNameLabel);
 
         // Display Play Again Button

@@ -4,11 +4,15 @@
     __.prototype = b.prototype;
     d.prototype = new __();
 };
+/// <reference path="../managers/asset.ts" />
 var objects;
 (function (objects) {
     //car class
+    //var carSound;
     var Car = (function (_super) {
         __extends(Car, _super);
+        //carSound: createjs.SoundInstance;
+        //carSound: createjs.SoundInstance;
         function Car(stage, game) {
             this.stage = stage;
             this.game = game;
@@ -28,7 +32,10 @@ var objects;
         };
 
         Car.prototype.destroy = function () {
-            this.carSound.stop();
+            //this.carSound.pause();
+            createjs.Sound.stop();
+
+            //this.carSound.stop();
             game.removeChild(this);
         };
         return Car;

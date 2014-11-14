@@ -6,6 +6,7 @@
 var states;
 (function (states) {
     function playState() {
+        //console.log("play state fired");
         road.update();
         coin.update();
         car.update();
@@ -48,7 +49,8 @@ var states;
         scoreboard = new objects.Scoreboard(stage, game);
 
         // Instantiate Collision Manager
-        //collision = new managers.Collision(plane, island, clouds, scoreboard);
+        collision = new managers.Collision(car, coin, redcar, scoreboard);
+
         stage.addChild(game);
     }
     states.play = play;

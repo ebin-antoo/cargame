@@ -36,7 +36,12 @@ function init() {
     stage = new createjs.Stage(document.getElementById("canvas"));
     stage.enableMouseOver(20);
     createjs.Ticker.setFPS(60);
-    createjs.Ticker.addEventListener("tick", gameloop);
+    createjs.Ticker.addEventListener("tick", gameLoop);
+
+    optimizeForMobile();
+
+    currentState = constants.MENU_STATE;
+    changeState(currentState);
 }
 
 // Add touch support for mobile devices
@@ -47,7 +52,7 @@ function optimizeForMobile() {
 }
 
 //game loop funcction
-function gameloop(event) {
+function gameLoop(event) {
     currentStateFunction();
     stage.update();
 }

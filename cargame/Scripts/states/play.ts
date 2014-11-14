@@ -5,6 +5,7 @@
 /// <reference path="../objects/scoreboard.ts" />
 module states {
     export function playState() {
+        //console.log("play state fired");
         road.update();
         coin.update();
         car.update();
@@ -47,7 +48,7 @@ module states {
         scoreboard = new objects.Scoreboard(stage, game);
 
         // Instantiate Collision Manager
-        //collision = new managers.Collision(plane, island, clouds, scoreboard);
+        collision = new managers.Collision(car, coin, redcar, scoreboard);
 
         stage.addChild(game);
     }
