@@ -7,6 +7,7 @@
 /// <reference path="objects/road.ts" />
 /// <reference path="objects/scoreboard.ts" />
 var stage;
+var game;
 
 //game objects
 var car;
@@ -14,8 +15,16 @@ var coin;
 var road;
 var scoreboard;
 
+var collision;
+
 //redcar array
 var redcar = [];
+
+var tryAgain;
+var playButton;
+
+var currentState;
+var currentStateFunction;
 
 //preloading function
 function preload() {
@@ -28,104 +37,41 @@ function init() {
     stage.enableMouseOver(20);
     createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener("tick", gameloop);
-    gameStart();
+}
+
+// Add touch support for mobile devices
+function optimizeForMobile() {
+    if (createjs.Touch.isSupported()) {
+        createjs.Touch.enable(stage);
+    }
 }
 
 //game loop funcction
 function gameloop(event) {
-    road.update();
-    coin.update();
-    car.update();
-    for (var count = 0; count < constants.REDCAR_NUM; count++) {
-        redcar[count].update();
-    }
-    collisonCheck();
-    scoreboard.update();
+    currentStateFunction();
     stage.update();
 }
 
-//distance function
-function distance(p1, p2) {
-    var firstpoint;
-    var secondpoint;
-    var theXs;
-    var theYs;
-    var result;
+function changeState(state) {
+    switch (state) {
+        case constants.MENU_STATE:
+            // instantiate menu screen
+            currentStateFunction = states.menuState;
+            states.menu();
+            break;
 
-    firstpoint = new createjs.Point();
-    secondpoint = new createjs.Point();
+        case constants.PLAY_STATE:
+            // instantiate play screen
+            currentStateFunction = states.playState;
+            states.play();
+            break;
 
-    firstpoint.x = p1.x;
-    firstpoint.y = p1.y;
+        case constants.GAME_OVER_STATE:
+            currentStateFunction = states.gameOverState;
 
-    secondpoint.x = p2.x;
-    secondpoint.y = p2.y;
-
-    theXs = secondpoint.x - firstpoint.x;
-    theYs = secondpoint.y - firstpoint.y;
-
-    theXs *= theXs;
-    theYs *= theYs;
-
-    result = Math.sqrt(theXs + theYs);
-
-    return result;
-}
-
-//collision btwn car and coin
-function carAndCoin() {
-    var point1 = new createjs.Point();
-    var point2 = new createjs.Point();
-
-    point1.x = car.x;
-    point1.y = car.y;
-    point2.x = coin.x;
-    point2.y = coin.y;
-    if (distance(point1, point2) < ((car.height * 0.5) + (coin.height * 0.5))) {
-        createjs.Sound.play("1-up");
-        scoreboard.scores += 100;
-        coin.reset();
+            // instantiate game over screen
+            states.gameOver();
+            break;
     }
-}
-
-//collision btwn car and red car
-function carAndRedCar(theRedCar) {
-    var point1 = new createjs.Point();
-    var point2 = new createjs.Point();
-
-    var redcar = new objects.RedCar();
-
-    redcar = theRedCar;
-
-    point1.x = car.x;
-    point1.y = car.y;
-    point2.x = redcar.x;
-    point2.y = redcar.y;
-    if (distance(point1, point2) < ((car.height * 0.5) + (redcar.height * 0.5))) {
-        createjs.Sound.play("car_crash");
-        createjs.Sound.play("lost_a_life", 0, 1, 0, 0);
-        scoreboard.lives -= 1;
-        redcar.reset();
-    }
-}
-
-//collision check function
-function collisonCheck() {
-    carAndCoin();
-    for (var count = 0; count < constants.REDCAR_NUM; count++) {
-        carAndRedCar(redcar[count]);
-    }
-}
-
-//game start function
-function gameStart() {
-    road = new objects.Road();
-    coin = new objects.Coin();
-    car = new objects.Car();
-
-    for (var count = 0; count < constants.REDCAR_NUM; count++) {
-        redcar[count] = new objects.RedCar();
-    }
-    scoreboard = new objects.Scoreboard();
 }
 //# sourceMappingURL=game.js.map

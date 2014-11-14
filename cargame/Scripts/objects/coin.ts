@@ -1,13 +1,17 @@
 ﻿module objects {
     //Coin class
     export class Coin extends objects.GameObjects{
+        stage: createjs.Stage;
+        game: createjs.Container;
         dy: number;
-        constructor() {
+        constructor(stage: createjs.Stage, game: createjs.Container) {
+            this.stage = stage;
+            this.game = game;
             super("coin");
             this.dy = 5;
 
-            stage.addChild(this);
-            this.reset();
+            game.addChild(this);
+            //this.reset();
         }
 
         reset() {
@@ -21,6 +25,10 @@
             if (this.x <= (-stage.canvas.width)) {
                 this.reset();
             }
+        }
+
+        destroy() {
+            game.removeChild(this);
         }
     } //EO coin class
 } 

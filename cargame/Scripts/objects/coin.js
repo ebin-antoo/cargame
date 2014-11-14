@@ -9,12 +9,14 @@ var objects;
     //Coin class
     var Coin = (function (_super) {
         __extends(Coin, _super);
-        function Coin() {
+        function Coin(stage, game) {
+            this.stage = stage;
+            this.game = game;
             _super.call(this, "coin");
             this.dy = 5;
 
-            stage.addChild(this);
-            this.reset();
+            game.addChild(this);
+            //this.reset();
         }
         Coin.prototype.reset = function () {
             this.x = 805;
@@ -26,6 +28,10 @@ var objects;
             if (this.x <= (-stage.canvas.width)) {
                 this.reset();
             }
+        };
+
+        Coin.prototype.destroy = function () {
+            game.removeChild(this);
         };
         return Coin;
     })(objects.GameObjects);

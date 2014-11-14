@@ -1,5 +1,6 @@
-﻿module states {
-    export function startButtonClicked(event: MouseEvent) {
+﻿var states;
+(function (states) {
+    function startButtonClicked(event) {
         stage.removeChild(game);
         car.destroy();
         game.removeAllChildren();
@@ -7,14 +8,16 @@
         currentState = constants.PLAY_STATE;
         changeState(currentState);
     }
+    states.startButtonClicked = startButtonClicked;
 
-    export function menuState() {
+    function menuState() {
         road.update();
         car.update();
     }
+    states.menuState = menuState;
 
-    export function menu() {
-        var gameNameLabel: objects.Label;
+    function menu() {
+        var gameNameLabel;
 
         // Declare new Game Container
         game = new createjs.Container();
@@ -37,4 +40,6 @@
 
         stage.addChild(game);
     }
-} 
+    states.menu = menu;
+})(states || (states = {}));
+//# sourceMappingURL=menu.js.map

@@ -1,12 +1,17 @@
 ﻿module objects {
     //car class
     export class Car extends objects.GameObjects { 
-        constructor() {
-           super("car");
+        stage: createjs.Stage;
+        game: createjs.Container;
+        carSound: createjs.SoundInstance;
+        constructor(stage: createjs.Stage, game: createjs.Container) {
+            this.stage = stage;
+            this.game = game;
+            super("car");
             this.x = 65;
             this.y = 302;
 
-            stage.addChild(this);
+            game.addChild(this);
             //play car engine sound
             createjs.Sound.play("police_siren",0,0,0,-1,1,0);
         }
@@ -15,6 +20,11 @@
             if (stage.mouseY >= 70 && stage.mouseY <= 550) {
                 this.y = stage.mouseY;
             }
+        }
+
+        destroy() {
+            this.carSound.stop();
+            game.removeChild(this);
         }
     } //EO car class
 } 

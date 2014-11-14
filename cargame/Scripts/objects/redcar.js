@@ -4,17 +4,20 @@
     __.prototype = b.prototype;
     d.prototype = new __();
 };
+/// <reference path="../managers/asset.ts" />
 var objects;
 (function (objects) {
     //red car class
     var RedCar = (function (_super) {
         __extends(RedCar, _super);
-        function RedCar() {
+        function RedCar(stage, game) {
+            this.stage = stage;
+            this.game = game;
             _super.call(this, "red_car");
 
             //this.dx = 10;
             this.reset();
-            stage.addChild(this);
+            game.addChild(this);
         }
         RedCar.prototype.reset = function () {
             this.x = stage.canvas.width + this.width; //805 + Math.floor(Math.random() * 50);
@@ -28,6 +31,10 @@ var objects;
             if (this.x <= -stage.canvas.width) {
                 this.reset();
             }
+        };
+
+        RedCar.prototype.destroy = function () {
+            game.removeChild(this);
         };
         return RedCar;
     })(objects.GameObjects);

@@ -10,13 +10,15 @@ var objects;
     //Road class
     var Road = (function (_super) {
         __extends(Road, _super);
-        function Road() {
+        function Road(stage, game) {
+            this.stage = stage;
+            this.game = game;
             _super.call(this, managers.Asset.loader.getResult("road"));
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.dx = 5;
 
-            stage.addChild(this);
+            game.addChild(this);
             this.reset();
         }
         Road.prototype.reset = function () {
@@ -28,6 +30,10 @@ var objects;
             if (this.x <= -600) {
                 this.reset();
             }
+        };
+
+        Road.prototype.destroy = function () {
+            game.removeChild(this);
         };
         return Road;
     })(createjs.Bitmap);

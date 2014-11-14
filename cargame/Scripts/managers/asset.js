@@ -9,13 +9,15 @@
     ];
 
     var spriteSheetData = {
-        "images": ["assets/images/imgMap.png"],
+        "images": ["assets/imgMap.png"],
         "frames": [
             [2, 2, 95, 78],
-            [99, 2, 95, 78],
-            [196, 2, 95, 78],
-            [390, 2, 60, 65],
-            [293, 2, 95, 78]
+            [2, 82, 95, 78],
+            [231, 148, 95, 78],
+            [328, 2, 60, 65],
+            [99, 2, 227, 71],
+            [99, 75, 227, 71],
+            [2, 162, 227, 71]
         ],
         "animations": {
             "car": {
@@ -23,7 +25,9 @@
                 speed: 1
             },
             "coin": [3],
-            "red_car": [4]
+            "instructionsButton": [4],
+            "startButton": [5],
+            "tryAgainButton": [6]
         }
     };
 

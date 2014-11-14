@@ -1,13 +1,18 @@
-﻿module objects {
+﻿/// <reference path="../managers/asset.ts" />
+module objects {
     //red car class
     export class RedCar extends objects.GameObjects {
+        stage: createjs.Stage;
+        game: createjs.Container;
         dy: number;
         dx: number;
-        constructor() {
+        constructor(stage: createjs.Stage, game: createjs.Container) {
+            this.stage = stage;
+            this.game = game;
             super("red_car");
             //this.dx = 10;            
             this.reset();
-            stage.addChild(this);           
+            game.addChild(this);           
         }
 
         reset() {
@@ -22,6 +27,10 @@
             if (this.x <= -stage.canvas.width) {
                 this.reset();
             }
+        }
+
+        destroy() {
+            game.removeChild(this);
         }
     } //EO red car class
 
