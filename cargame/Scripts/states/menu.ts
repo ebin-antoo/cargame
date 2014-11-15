@@ -47,15 +47,15 @@ module states {
         stage.cursor = "default";
 
         // Display car game name
-        gameNameLabel = new objects.Label(stage.canvas.width / 2, 40, "CAR GAME");
+        gameNameLabel = new objects.Label(stage.canvas.width / 2, 40, "NEED FOR POLICE");
         game.addChild(gameNameLabel);
 
         // Display Play Again Button
-        playButton = new objects.Button(stage.canvas.width / 2, 300, "startButton");
+        playButton = new objects.Button(stage.canvas.width / 2, 250, "startButton");
         game.addChild(playButton);
         playButton.addEventListener("click", startButtonClicked);
 
-        instructionButton = new objects.Button(stage.canvas.width / 2, 400, "instructionsButton");
+        instructionButton = new objects.Button(stage.canvas.width / 2, 350, "instructionsButton");
         game.addChild(instructionButton);
         instructionButton.addEventListener("click", instructionsButtonClicked);
         

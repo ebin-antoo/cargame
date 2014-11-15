@@ -8,6 +8,7 @@ module objects {
         labelString: string = "";
         lives: number = constants.PLAYER_LIVES;
         scores: number = 0;
+        distance: number = 0;
         width: number;
         height: number;
         constructor(stage: createjs.Stage, game: createjs.Container) {
@@ -21,7 +22,7 @@ module objects {
             game.addChild(this.label);
         }
         update() {
-            this.labelString = "Lives: " + this.lives.toString() + "Score: " + this.scores.toString();
+            this.labelString = "Lives:" + this.lives.toString() + "   Score:" + this.scores.toString() + "   Distance:" + this.distance.toString() + "m";
             this.label.text = this.labelString;
         }
 

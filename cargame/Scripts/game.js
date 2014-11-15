@@ -57,7 +57,7 @@ function optimizeForMobile() {
 function gameLoop(event) {
     currentStateFunction();
     stage.update();
-    scoreboard.scores++;
+    scoreboard.distance++;
 }
 
 function changeState(state) {
