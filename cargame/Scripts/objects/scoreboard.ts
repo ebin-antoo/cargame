@@ -24,6 +24,8 @@ module objects {
         update() {
             this.labelString = "Lives:" + this.lives.toString() + "   Score:" + this.scores.toString() + "   Distance:" + this.distance.toString() + "m";
             this.label.text = this.labelString;
+
+            
         }
 
         destroy() {

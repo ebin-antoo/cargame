@@ -25,6 +25,14 @@ var states;
             currentState = constants.GAME_OVER_STATE;
             changeState(currentState);
         }
+
+        if (scoreboard.scores > 900) {
+            alert("Winner, Thanks for Playing");
+            game.removeAllChildren();
+            game.removeAllEventListeners();
+            currentState = constants.MENU_STATE;
+            changeState(currentState);
+        }
     }
     states.playState = playState;
 
