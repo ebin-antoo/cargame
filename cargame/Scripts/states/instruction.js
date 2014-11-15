@@ -35,13 +35,17 @@ var states;
         //this.title = new objects.Label(stage.canvas.width / 2, 40, "HOW TO PLAY THE GAME");
         game.addChild(title);
 
-        instructionLabel = new objects.Label(stage.canvas.width / 2, 200, "Test Test Test");
+        instructionLabel = new objects.Label(stage.canvas.width / 2, 200, "This is a 2D Side Scolling game.\n\nTo Play this game move the police \n\n car up and down using the mouse. \n\n Avoid hitting the opposite cars  \n\n which will lose the lives and \n\n  when the lives becomes 0  \n\n the game will be over.");
 
         //this.instructionsLabel = new objects.Label(stage.canvas.width / 2, 200, "Test Test Test");
+        instructionLabel.regX = 0;
+        instructionLabel.x = 13;
+        instructionLabel.y = 245;
         game.addChild(instructionLabel);
 
+        //move the police car up \n and down using the mouse. \nAvoid hitting the opposite cars which will lose the live and when the lives becomes 0 the game will be over
         // Display Play Button
-        playButton = new objects.Button(stage.canvas.width / 2, 400, "startButton");
+        playButton = new objects.Button(stage.canvas.width / 2, 480, "startButton");
         game.addChild(playButton);
         playButton.addEventListener("click", states.startButtonClicked);
 
